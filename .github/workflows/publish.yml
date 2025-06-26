@@ -25,10 +25,8 @@ jobs:
       - name: Build Docker image
         run: |
           docker build . --tag  ghcr.io/${{ github.repository_owner }}/hello:latest .
-
-      - name: Push Docker image
-        run: |
           docker push ghcr.io/${{ github.repository_owner }}/hello:latest
+          
       
     
     
