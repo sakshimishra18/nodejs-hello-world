@@ -2,7 +2,7 @@ name: data passing
 on: 
  push: 
   branches:
-    - latest
+    - new
 
 job1:
   data-passing:
