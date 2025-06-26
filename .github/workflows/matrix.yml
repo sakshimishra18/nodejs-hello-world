@@ -1,0 +1,33 @@
+name: Matrix Example
+
+on:
+  push:
+    branches:
+      - main
+      - test
+      
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-22.04, ububtu-20.04]
+        node: [18,20]
+    runs-on: $ {{ matrix.os }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with: 
+          node-version: ${{ matrix.node }}
+        
+      - name: Install npm
+        run: npm install
+          
+      - name: install dependencies
+        run: npm ci
+          
+      - name: build
+        run: npm run build
+      
