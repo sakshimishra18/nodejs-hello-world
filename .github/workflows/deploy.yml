@@ -18,6 +18,8 @@ jobs:
       - name: npm build
         run: npm run build
       - name: Deploy
-        run: npm run deploy
         if: github.ref == 'refs/heads/test' && github.event_name == 'push'
-          echo "deployed" #<--end of build
+        run: |
+          npm run deploy
+          echo "deploy the file"
+        
