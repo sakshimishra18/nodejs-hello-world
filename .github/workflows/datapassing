@@ -1,0 +1,30 @@
+name: data passing
+on: 
+ push: 
+  branches:
+    - latest
+
+job1:
+  data-passing:
+  runs-on: ububtu-latest
+  steps:
+    - name: generate data
+      run: echo "run the job" > data.txt
+    - name: upload data as artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: data-artifact
+        path: data.txt
+
+job2:
+needs: job1
+runs-on: ubuntu-latest
+steps:
+  - name: download data
+    uses: actions/download-artifact@v2
+    with:
+      name: data-artifact
+      path: data/
+  - name: use data
+    run: cat data/data.txt
+    
